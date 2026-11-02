@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Come bien y a un excelente precio | Mercado Gastronómico Azteca</title>
+  <meta name="description" content="Promociones de la semana, postres, temporada y recomendaciones del Mercado Gastronómico Azteca para colaboradores de TV Azteca y Azteca Estudios.">
+  <meta name="theme-color" content="#B0154F">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <div class="papel-picado" aria-hidden="true"></div>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="marca" href="./">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M8 7c0-1.5 1-2 1-3.5M12 7c0-1.5 1-2 1-3.5M16 7c0-1.5 1-2 1-3.5"/>
+        </svg>
+        <span>Mercado Gastronómico Azteca</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Encabezado de campaña -->
+    <section class="hero contenedor" aria-labelledby="hero-titulo">
+      <div class="hero__texto">
+        <h1 id="hero-titulo">Come bien y a un excelente precio</h1>
+        <p class="hero__bajada">Tus favoritos del Mercado Gastronómico Azteca te esperan todos los días. Disfruta platillos increíbles: hamburguesas, tacos, sushi, quesadillas, bebidas y más.</p>
+        <a class="boton" href="#promociones" data-ir-tva>Consulta las promociones</a>
+      </div>
+
+      <!-- Resumen del día: lo llena js/main.js -->
+      <aside class="hoy" aria-labelledby="hoy-titulo" data-hoy hidden>
+        <p class="hoy__etiqueta" id="hoy-titulo">Hoy en el Mercado</p>
+        <p class="hoy__dia" data-hoy-dia></p>
+        <p class="hoy__resumen" data-hoy-resumen></p>
+        <a class="boton boton--claro" href="#promociones-semana" data-ir-tva data-hoy-enlace>Ver promociones de hoy</a>
+      </aside>
+    </section>
+
+    <!-- Pestañas por sede -->
+    <section id="promociones" class="sedes" aria-label="Promociones y recomendaciones por sede">
+      <div class="sedes__barra">
+        <div class="contenedor sedes__barra-interior">
+          <p class="sedes__titulo" id="sede-etiqueta">Elige tu sede</p>
+          <div class="pestanas" role="tablist" aria-labelledby="sede-etiqueta" data-pestanas-sede>
+            <button type="button" role="tab" id="tab-tva" aria-controls="panel-tva" aria-selected="true">TV Azteca</button>
+            <button type="button" role="tab" id="tab-estudios" aria-controls="panel-estudios" aria-selected="false" tabindex="-1">Azteca Estudios</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel TV Azteca -->
+      <div id="panel-tva" class="panel" role="tabpanel" aria-labelledby="tab-tva" tabindex="0">
+
+        <section id="promociones-semana" class="bloque contenedor" aria-labelledby="semana-titulo">
+          <h2 id="semana-titulo">Promociones de la semana</h2>
+          <p class="bloque__intro">¿Qué se te antoja hoy?</p>
+
+          <div class="dias" role="tablist" aria-label="Día de la semana" data-dias></div>
+          <p class="aviso" data-aviso hidden></p>
+          <div id="panel-dia" class="panel-dia" role="tabpanel" tabindex="0" data-promos-dia></div>
+
+          <noscript>
+            <p class="aviso">Activa JavaScript en tu navegador para ver las promociones de cada día.</p>
+          </noscript>
+        </section>
+
+        <section class="bloque bloque--dulce" aria-labelledby="postres-titulo">
+          <div class="contenedor">
+            <h2 id="postres-titulo">¿Antojo de algo dulce?</h2>
+            <p class="bloque__intro">Para el postre siempre hay espacio.</p>
+            <div class="postres" data-postres></div>
+          </div>
+        </section>
+
+        <section class="bloque contenedor" aria-labelledby="temporada-titulo">
+          <h2 id="temporada-titulo">Septiembre sabe a México</h2>
+          <ul class="promos" data-temporada></ul>
+        </section>
+
+        <section class="bloque contenedor" aria-labelledby="eventos-titulo">
+          <h2 id="eventos-titulo">¡Más variedad llega para ti!</h2>
+          <ol class="eventos" data-eventos></ol>
+        </section>
+      </div>
+
+      <!-- Panel Azteca Estudios -->
+      <div id="panel-estudios" class="panel" role="tabpanel" aria-labelledby="tab-estudios" tabindex="0" hidden>
+        <section class="bloque contenedor" aria-labelledby="reco-titulo">
+          <h2 id="reco-titulo">Recomendaciones importantes</h2>
+
+          <div class="recos">
+            <article class="reco" aria-labelledby="reco-loza">
+              <span class="reco__icono" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="9" cy="13" r="6"/><circle cx="9" cy="13" r="2.5"/><path d="M18 4v16M21 4v5a3 3 0 0 1-3 3"/></svg>
+              </span>
+              <h3 id="reco-loza">Cuidemos lo que compartimos</h3>
+              <ul>
+                <li>Devuelve platos, vasos y cubiertos al área de loza.</li>
+                <li>Evita dejarlos en mesas o áreas comunes.</li>
+                <li>Si llevas tus alimentos, devuelve también los cubiertos que utilices.</li>
+              </ul>
+            </article>
+
+            <article class="reco" aria-labelledby="reco-calefactores">
+              <span class="reco__icono" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M8 10v6M12 10v6M16 10v6M8 3c0 1 1 1 1 2M14 3c0 1 1 1 1 2"/></svg>
+              </span>
+              <h3 id="reco-calefactores">Uso de calefactores</h3>
+              <ul>
+                <li>Conéctalos solo cuando los uses.</li>
+                <li>Úsalos máximo 2 horas continuas.</li>
+                <li>Mantenlos alejados del agua y la humedad.</li>
+                <li>Apágalos y desconéctalos al terminar.</li>
+                <li>Regrésalos a su lugar si los cambiaste de sitio.</li>
+              </ul>
+            </article>
+
+            <article class="reco" aria-labelledby="reco-microondas">
+              <span class="reco__icono" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="5" y="8" width="10" height="8" rx="1"/><path d="M18.5 9v.01M18.5 12v.01M18.5 15v.01"/></svg>
+              </span>
+              <h3 id="reco-microondas">Uso de microondas</h3>
+              <ul>
+                <li>Calienta tus alimentos de 3 a 5 minutos.</li>
+                <li>Usa siempre una tapa.</li>
+                <li>No introduzcas papel aluminio.</li>
+                <li>Permanece cerca mientras lo utilizas.</li>
+                <li>Retira tus alimentos al terminar.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="reporte">
+            <p class="reporte__texto"><strong>¿Detectaste alguna falla en un calefactor o microondas?</strong> Repórtala por WhatsApp al <span class="nowrap">55 3006 2410</span>.</p>
+            <a class="boton boton--verde" href="https://wa.me/525530062410" target="_blank" rel="noopener">Reportar por WhatsApp<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
+            <p class="reporte__gracias">¡Gracias por ayudarnos a mantenerlos en buen estado!</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="pie__lema">Calidad, sabor y precio</p>
+      <p class="pie__nota">Mercado Gastronómico Azteca. Comunicación interna para colaboradores.</p>
+    </div>
+  </footer>
+</body>
+</html>
