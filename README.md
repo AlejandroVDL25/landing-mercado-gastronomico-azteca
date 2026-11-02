@@ -2,7 +2,7 @@
 
 Landing de comunicación interna para la campaña del Mercado Gastronómico Azteca (MGA), dirigida a colaboradores de TV Azteca y Azteca Estudios. Está pensada primero para celular, porque es donde la mayoría la abrirá.
 
-- **Sitio publicado:** _(agregar liga de GitHub Pages)_
+- **Sitio publicado:** https://alejandrovdl25.github.io/landing-mercado-gastronomico-azteca/
 - **Diseño en Figma:** https://www.figma.com/design/SGoIPsJyu3fPfrr6HAU0mN
 
 ## Cómo correr el proyecto
