@@ -29,7 +29,7 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 ```
 ├── index.html        Estructura y contenido fijo (recomendaciones)
 ├── css/styles.css    Tokens de diseño y estilos
-├── js/data.js        Contenido de las promociones (lo que más cambia)
+├── js/data.js        Contenido de las promociones 
 ├── js/main.js        Pestañas, selector de día y armado de tarjetas
 └── docs/             Especificación del diseño en Figma
 ```
@@ -76,9 +76,6 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 | 19 | "Calidad, sabor y precio" se repite al final de cada pestaña. | Se usa una sola vez, como lema en el pie de página. |
 | 20 | No hay promociones de fin de semana. | En sábado y domingo se muestra el lunes con un aviso, como pide la prueba. |
 
-## Uso de IA
-
-- **Claude (Anthropic):** revisión del copy para detectar errores e inconsistencias, generación del código (HTML, CSS y JavaScript), especificación del diseño en Figma, redacción de este README y apoyo en la publicación del repositorio.
 
 ## Qué mejoraría con más tiempo
 
