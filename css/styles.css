@@ -16,6 +16,9 @@
   --fondo: #FFFFFF;
   --fondo-alt: #FBF6F8;
   --borde: #EBDDE3;
+  --noche: #1C0D05;         /* Fondo de la portada: mismo tono que el logo */
+  --crema: #FFF4E3;         /* Texto sobre la portada */
+  --crema-suave: #EBD3BF;
 
   --fuente-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
   --fuente-texto: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -41,7 +44,9 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--tinta);
-  background: var(--fondo);
+  background-color: var(--fondo);
+  /* Greca muy tenue para dar textura sin afectar la lectura */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' fill='none' stroke='%23B0154F' stroke-opacity='.05' stroke-width='3'%3E%3Cpath d='M6 50V6h44v36H18V18h20v12h-8'/%3E%3C/svg%3E");
 }
 
 h1, h2, h3, p { margin: 0; }
@@ -95,25 +100,8 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
 /* ---------- Papel picado (decorativo) ---------- */
 .papel-picado {
   height: 34px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='34'%3E%3Cpath d='M0 3H132' stroke='%2326161D' stroke-width='1.5'/%3E%3Cg%3E%3Cpath fill='%23B0154F' d='M4 3h36v24l-6 5-6-5-6 5-6-5-6 5-6-5z'/%3E%3Cpath fill='%23F5B700' d='M48 3h36v24l-6 5-6-5-6 5-6-5-6 5-6-5z'/%3E%3Cpath fill='%231D6B3B' d='M92 3h36v24l-6 5-6-5-6 5-6-5-6 5-6-5z'/%3E%3C/g%3E%3Cg fill='%23fff'%3E%3Ccircle cx='15' cy='12' r='2'/%3E%3Ccircle cx='22' cy='17' r='2'/%3E%3Ccircle cx='29' cy='12' r='2'/%3E%3Ccircle cx='59' cy='12' r='2'/%3E%3Ccircle cx='66' cy='17' r='2'/%3E%3Ccircle cx='73' cy='12' r='2'/%3E%3Ccircle cx='103' cy='12' r='2'/%3E%3Ccircle cx='110' cy='17' r='2'/%3E%3Ccircle cx='117' cy='12' r='2'/%3E%3C/g%3E%3C/svg%3E") repeat-x left top;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='34'%3E%3Cpath d='M0 3H132' stroke='%23EBD3BF' stroke-width='1.5'/%3E%3Cg%3E%3Cpath fill='%23B0154F' d='M4 3h36v24l-6 5-6-5-6 5-6-5-6 5-6-5z'/%3E%3Cpath fill='%23F5B700' d='M48 3h36v24l-6 5-6-5-6 5-6-5-6 5-6-5z'/%3E%3Cpath fill='%231D6B3B' d='M92 3h36v24l-6 5-6-5-6 5-6-5-6 5-6-5z'/%3E%3C/g%3E%3Cg fill='%23fff'%3E%3Ccircle cx='15' cy='12' r='2'/%3E%3Ccircle cx='22' cy='17' r='2'/%3E%3Ccircle cx='29' cy='12' r='2'/%3E%3Ccircle cx='59' cy='12' r='2'/%3E%3Ccircle cx='66' cy='17' r='2'/%3E%3Ccircle cx='73' cy='12' r='2'/%3E%3Ccircle cx='103' cy='12' r='2'/%3E%3Ccircle cx='110' cy='17' r='2'/%3E%3Ccircle cx='117' cy='12' r='2'/%3E%3C/g%3E%3C/svg%3E") repeat-x left top;
 }
-
-/* ---------- Encabezado ---------- */
-.encabezado { border-bottom: 1px solid var(--borde); }
-.encabezado .contenedor { padding-block: 0.875rem; }
-
-.marca {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  color: var(--rosa);
-  text-decoration: none;
-  font-family: var(--fuente-display);
-  font-weight: 800;
-  font-size: 1.125rem;
-  line-height: 1.2;
-}
-.marca span { color: var(--tinta); }
 
 /* ---------- Botones ---------- */
 .boton {
@@ -136,23 +124,53 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
 .boton--claro { background: #fff; border-color: #fff; color: var(--rosa); }
 .boton--claro:hover { background: var(--maiz); border-color: var(--maiz); color: var(--tinta); }
 
+.boton--maiz { background: var(--maiz); border-color: var(--maiz); color: var(--tinta); }
+.boton--maiz:hover { background: #fff; border-color: #fff; color: var(--tinta); }
+
 .boton--verde { background: var(--verde); border-color: var(--verde); }
 .boton--verde:hover { background: var(--tinta); border-color: var(--tinta); }
 
-/* ---------- Hero ---------- */
+/* ---------- Portada (logo + hero) ---------- */
+.portada {
+  position: relative;
+  color: var(--crema);
+  background-color: var(--noche);
+  background-image:
+    radial-gradient(ellipse 60% 55% at 30% 35%, rgba(245, 183, 0, 0.16), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 85% 70%, rgba(176, 21, 79, 0.28), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' fill='none' stroke='%23F5B700' stroke-opacity='.09' stroke-width='3'%3E%3Cpath d='M6 50V6h44v36H18V18h20v12h-8'/%3E%3C/svg%3E");
+}
+.portada :focus-visible { outline-color: #fff; }
+
 .hero {
   display: grid;
   gap: 2rem;
-  padding-block: 2.5rem 3rem;
+  padding-block: 1.5rem 3rem;
 }
 
-.hero h1 { max-width: 11ch; }
+/* El logo se funde con el fondo para que no se vea como un recuadro */
+.hero__logo img {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  margin-inline: -0.5rem;
+  -webkit-mask-image: radial-gradient(ellipse 66% 64% at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 66% 64% at 50% 50%, #000 55%, transparent 100%);
+}
+
+.hero h1 {
+  max-width: 13ch;
+  margin-top: 0.5rem;
+  color: var(--crema);
+  font-size: clamp(2.5rem, 4.5vw + 1rem, 4.25rem);
+}
 
 .hero__bajada {
   max-width: 38ch;
   margin-top: 1.25rem;
   font-size: 1.1875rem;
-  color: var(--tinta-suave);
+  color: var(--crema-suave);
 }
 
 .hero__texto .boton { margin-top: 2rem; }
@@ -160,9 +178,11 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
 .hoy {
   align-self: center;
   padding: 1.75rem;
+  border: 2px solid rgba(245, 183, 0, 0.5);
   border-radius: var(--radio-l);
   background: var(--rosa);
   color: #fff;
+  box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.6);
 }
 .hoy :focus-visible { outline-color: #fff; }
 
@@ -386,8 +406,6 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
 }
 .ubicacion svg { margin-top: 0.25rem; }
 
-/* Respuesta visual al cambiar de día */
-.promos--animadas .promo { animation: aparecer 0.25s ease both; }
 @keyframes aparecer {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -544,10 +562,249 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
 
 .pie__nota { margin-top: 1rem; font-size: 0.9375rem; color: #FFE3EE; }
 
+
+/* ==========================================================
+   Cinta con las promociones del día
+   ========================================================== */
+.cinta {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: var(--maiz);
+  color: var(--tinta);
+  border-bottom: 3px solid var(--tinta);
+}
+
+.cinta__etiqueta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding: 0 1.5rem 0 1rem;
+  background: var(--rosa);
+  color: #fff;
+  font: 800 1.125rem/1 var(--fuente-display);
+  white-space: nowrap;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.875rem) 100%, 0 100%);
+}
+/* Punto que late para indicar "en vivo" */
+.cinta__etiqueta::before {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--maiz);
+  animation: latido-punto 1.6s ease-in-out infinite;
+}
+
+.cinta__etiqueta { font-size: 1rem; padding-inline: 0.75rem 1.25rem; }
+/* En celular solo se lee "Hoy"; el día completo sigue disponible para lectores de pantalla */
+.cinta__dia {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.cinta__pausa { width: 3rem; }
+
+.cinta__ventana {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+}
+
+.cinta__pista {
+  display: flex;
+  width: max-content;
+  animation: desplazar-cinta var(--duracion, 20s) linear infinite;
+}
+.cinta:hover .cinta__pista,
+.cinta:focus-within .cinta__pista,
+.cinta--pausada .cinta__pista { animation-play-state: paused; }
+
+.cinta__grupo {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cinta__item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 3.5rem;
+  padding: 0.5rem 1.5rem;
+  color: var(--tinta);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cinta__item::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 1rem;
+  background: var(--tinta);
+  transform: rotate(45deg);
+}
+.cinta__item:hover .cinta__nombre { text-decoration: underline; text-underline-offset: 3px; }
+.cinta__item:focus-visible { outline-offset: -4px; }
+
+.cinta__lugar { font-size: 0.9375rem; font-weight: 700; color: #7A0E36; }
+.cinta__nombre { font-weight: 700; font-size: 1.0625rem; }
+
+.precio--oscuro {
+  background:
+    radial-gradient(circle at 0.875rem 50%, var(--maiz) 0 0.1875rem, transparent 0.21rem),
+    var(--tinta);
+  color: var(--maiz);
+  font-size: 1.0625rem;
+}
+
+.cinta__pausa {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3.5rem;
+  border: 0;
+  border-left: 3px solid var(--tinta);
+  background: var(--maiz);
+  color: var(--tinta);
+  cursor: pointer;
+}
+.cinta__pausa:hover { background: #fff; }
+.cinta__icono-play { display: none; }
+.cinta--pausada .cinta__icono-pausa { display: none; }
+.cinta--pausada .cinta__icono-play { display: block; }
+
+/* ==========================================================
+   Animaciones
+   ========================================================== */
+
+/* Papel picado que se mueve como con el viento */
+.papel-picado { animation: banderitas 24s linear infinite; }
+
+/* Entrada de la portada */
+.hero__logo img {
+  animation:
+    entrada-logo 0.9s cubic-bezier(0.2, 0.8, 0.25, 1.25) both,
+    flotar 6s 1s ease-in-out infinite;
+}
+.hero h1 { animation: subir 0.7s 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.hero__bajada { animation: subir 0.7s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.hero__texto .boton { animation: subir 0.7s 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.hoy { animation: entrar-derecha 0.8s 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both, latido 2.8s 1.6s ease-in-out infinite; }
+.cinta { animation: bajar 0.6s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+/* Botón principal con brillo que pasa */
+.boton--maiz { position: relative; overflow: hidden; }
+.boton--maiz::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: brillo 3.5s 1.5s ease-in-out infinite;
+}
+
+/* "Hoy" en el selector de día */
+.dia__hoy::before {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 0.1em;
+  animation: latido-punto 1.6s ease-in-out infinite;
+}
+
+/* Tarjetas que se levantan al pasar el cursor */
+.promo, .evento, .reco { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.promo:hover, .evento:hover, .reco:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.5rem -0.75rem rgba(38, 22, 29, 0.35);
+}
+.promo:hover .precio { animation: menear 0.5s ease; }
+
+/* Al cambiar de día, los precios caen como sello */
+.promos--animadas .promo { animation: aparecer 0.35s ease both; }
+.promos--animadas .promo:nth-child(2) { animation-delay: 60ms; }
+.promos--animadas .promo:nth-child(3) { animation-delay: 120ms; }
+.promos--animadas .promo:nth-child(4) { animation-delay: 180ms; }
+.promos--animadas .promo:nth-child(n+5) { animation-delay: 240ms; }
+.promos--animadas .precio { animation: sello 0.45s 0.2s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
+
+/* Aparición al hacer scroll (solo si JavaScript está activo) */
+.con-revelado .revelar {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--retraso, 0ms);
+}
+.con-revelado .revelar.visible { opacity: 1; transform: none; }
+
+@keyframes desplazar-cinta { to { transform: translateX(-50%); } }
+@keyframes banderitas { to { background-position-x: 264px; } }
+@keyframes entrada-logo {
+  from { opacity: 0; transform: scale(0.7) rotate(-4deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes flotar {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+@keyframes subir {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bajar {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes entrar-derecha {
+  from { opacity: 0; transform: translateX(2.5rem) rotate(2deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes latido {
+  0%, 100% { box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.6), 0 0 0 0 rgba(245, 183, 0, 0.45); }
+  50% { box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.6), 0 0 0 0.875rem rgba(245, 183, 0, 0); }
+}
+@keyframes latido-punto {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+@keyframes brillo {
+  0% { transform: translateX(-120%); }
+  40%, 100% { transform: translateX(120%); }
+}
+@keyframes menear {
+  0%, 100% { transform: rotate(-2deg); }
+  30% { transform: rotate(4deg) scale(1.08); }
+  60% { transform: rotate(-5deg); }
+}
+@keyframes sello {
+  from { opacity: 0; transform: scale(1.7) rotate(-14deg); }
+  to { opacity: 1; transform: rotate(-2deg); }
+}
+
 /* ==========================================================
    Tableta (≥ 768 px)
    ========================================================== */
 @media (min-width: 48em) {
+  .cinta__etiqueta { font-size: 1.125rem; padding-inline: 1rem 1.5rem; }
+  .cinta__dia { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+  .cinta__pausa { width: 3.5rem; }
+
   .sedes__titulo {
     position: static;
     width: auto; height: auto;
@@ -594,12 +851,11 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
    Escritorio (≥ 1024 px)
    ========================================================== */
 @media (min-width: 64em) {
-  .encabezado .contenedor { padding-block: 1.125rem; }
-
   .hero {
     grid-template-columns: 1.4fr 1fr;
     gap: 4rem;
-    padding-block: 5rem 5.5rem;
+    align-items: center;
+    padding-block: 2rem 5rem;
   }
   .hoy { padding: 2.25rem; }
 
@@ -614,6 +870,9 @@ h2 { font-size: clamp(1.875rem, 2.5vw + 1.1rem, 2.75rem); line-height: 1.05; }
 /* ---------- Movimiento reducido ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .cinta__ventana { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .cinta__grupo[aria-hidden="true"], .cinta__pausa { display: none; }
+  .con-revelado .revelar { opacity: 1; transform: none; }
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;

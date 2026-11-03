@@ -232,6 +232,79 @@
     tarjeta.hidden = false;
   };
 
+  /* ---------- Cinta con las promociones del día ---------- */
+
+  const iniciarCinta = (hoyId, dias) => {
+    const cinta = document.querySelector('[data-cinta]');
+    const pista = cinta.querySelector('[data-cinta-pista]');
+    const titulo = cinta.querySelector('[data-cinta-titulo]');
+    const pausa = cinta.querySelector('[data-cinta-pausa]');
+    const diaId = hoyId || 'lunes';
+    const promos = DATA.semana[diaId] || [];
+    if (!promos.length) return;
+
+    const nombreDia = DIAS.find((d) => d.id === diaId).largo.toLowerCase();
+    titulo.innerHTML = hoyId
+      ? `Hoy <span class="cinta__dia">${nombreDia}</span>`
+      : `El <span class="cinta__dia-finde">${nombreDia}</span>`;
+
+    const item = (p, oculto) => `
+      <li>
+        <a class="cinta__item" href="#promociones-semana" data-ir-tva data-ir-dia="${diaId}"${oculto ? ' tabindex="-1"' : ''}>
+          ${p.lugar ? `<span class="cinta__lugar">${escapar(p.lugar)}</span>` : ''}
+          <span class="cinta__nombre">${escapar(p.nombre)}</span>
+          ${p.precio ? `<span class="precio precio--oscuro">${escapar(p.precio)}</span>` : ''}
+        </a>
+      </li>`;
+
+    // La lista se repite para que el movimiento sea continuo; la copia se oculta a lectores de pantalla.
+    const lista = promos.map((p) => item(p, false)).join('');
+    const copia = promos.map((p) => item(p, true)).join('');
+    pista.innerHTML = `<ul class="cinta__grupo">${lista}</ul><ul class="cinta__grupo" aria-hidden="true">${copia}</ul>`;
+
+    // Mientras más promociones, más tiempo por vuelta, para que la velocidad sea constante.
+    pista.style.setProperty('--duracion', `${Math.max(promos.length * 7, 18)}s`);
+
+    pausa.addEventListener('click', () => {
+      const pausada = cinta.classList.toggle('cinta--pausada');
+      pausa.setAttribute('aria-pressed', String(pausada));
+      pausa.querySelector('.sr-only').textContent = pausada
+        ? 'Reanudar la cinta de promociones'
+        : 'Pausar la cinta de promociones';
+    });
+
+    cinta.addEventListener('click', (evento) => {
+      const enlace = evento.target.closest('[data-ir-dia]');
+      if (enlace) dias.seleccionar(document.getElementById(`dia-${enlace.dataset.irDia}`));
+    });
+
+    cinta.hidden = false;
+  };
+
+  /* ---------- Aparición de secciones al hacer scroll ---------- */
+
+  const iniciarRevelado = () => {
+    const elementos = document.querySelectorAll(
+      '.bloque h2, .bloque__intro, .dias, .grupo, [data-temporada] .promo, .evento, .reco, .reporte, .pie__lema'
+    );
+    if (!('IntersectionObserver' in window)) return;
+
+    document.documentElement.classList.add('con-revelado');
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (!entrada.isIntersecting) return;
+        entrada.target.classList.add('visible');
+        observador.unobserve(entrada.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+
+    elementos.forEach((el, i) => {
+      el.classList.add('revelar');
+      el.style.setProperty('--retraso', `${(i % 3) * 90}ms`);
+      observador.observe(el);
+    });
+  };
+
   /* ---------- Inicio ---------- */
 
   const numeroDia = diaSemanaCDMX();
@@ -242,5 +315,7 @@
   iniciarPostres(hoyId);
   const dias = iniciarSemana(hoyId);
   iniciarHoy(hoyId, dias);
+  iniciarCinta(hoyId, dias);
   iniciarSedes();
+  iniciarRevelado();
 })();

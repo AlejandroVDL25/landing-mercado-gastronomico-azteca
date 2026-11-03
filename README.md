@@ -29,8 +29,9 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 ```
 ├── index.html        Estructura y contenido fijo (recomendaciones)
 ├── css/styles.css    Tokens de diseño y estilos
-├── js/data.js        Contenido de las promociones 
+├── js/data.js        Contenido de las promociones (lo que más cambia)
 ├── js/main.js        Pestañas, selector de día y armado de tarjetas
+├── img/              Logo en WebP y JPG, en dos tamaños
 └── docs/             Especificación del diseño en Figma
 ```
 
@@ -38,9 +39,12 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 
 - **Pestañas TV Azteca / Azteca Estudios:** solo se muestra el contenido de la pestaña activa. Siguen el patrón de pestañas de WAI-ARIA: se pueden usar con mouse, toque o teclado (flechas, Inicio y Fin).
 - **Selector de día:** al abrir la página se muestra el día actual de lunes a viernes; en fin de semana se muestra el lunes con un aviso. El día se calcula con la zona horaria de la Ciudad de México, sin depender de la configuración del celular.
+- **Cinta de promociones del día:** banner en la parte superior que recorre las promociones de hoy (en fin de semana, las del lunes). Se detiene al pasar el cursor o al enfocarla con el teclado, tiene botón de pausa y cada promoción lleva directo a su tarjeta.
+- **Animaciones:** entrada escalonada de la portada, logo flotante, papel picado en movimiento, tarjetas que se levantan al pasar el cursor, precios que caen como sello al cambiar de día y secciones que aparecen al hacer scroll.
 - **Tarjeta "Hoy en el Mercado":** resume cuántas promociones hay hoy y en qué locales, con un botón que lleva directo a ellas.
 - **Postres:** cada grupo indica si está disponible hoy.
 - **Contenido separado del código:** todas las promociones viven en `js/data.js`.
+- **Portada con logo:** fondo oscuro con una greca tenue que retoma el estilo del logo; el resto de la página usa la misma greca casi transparente para dar textura sin afectar la lectura. El logo se sirve en WebP con respaldo en JPG y en dos tamaños según la pantalla.
 
 ## Accesibilidad
 
@@ -48,7 +52,8 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 - Enlace para saltar al contenido, foco visible en todos los elementos interactivos y áreas táctiles de al menos 44 px.
 - Pestañas con roles `tablist`, `tab` y `tabpanel`, `aria-selected` y navegación con teclado.
 - Las ilustraciones e iconos decorativos están ocultos a lectores de pantalla (`aria-hidden`); el sitio no usa imágenes con información, por lo que no requiere textos alternativos adicionales.
-- Se respeta la preferencia de movimiento reducido del sistema.
+- Se respeta la preferencia de movimiento reducido del sistema: con ella activada se apagan todas las animaciones y la cinta se convierte en una lista que se desplaza a mano.
+- La cinta en movimiento se puede pausar (criterio 2.2.2 de WCAG) y su copia duplicada, que sirve para el efecto continuo, está oculta a lectores de pantalla.
 - Funciona sin desplazamiento horizontal desde 360 px hasta 1440 px.
 
 ## Errores e inconsistencias del copy y cómo los resolví
@@ -76,6 +81,10 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 | 19 | "Calidad, sabor y precio" se repite al final de cada pestaña. | Se usa una sola vez, como lema en el pie de página. |
 | 20 | No hay promociones de fin de semana. | En sábado y domingo se muestra el lunes con un aviso, como pide la prueba. |
 
+## Uso de IA
+
+- **Claude (Anthropic):** revisión del copy para detectar errores e inconsistencias, generación del código (HTML, CSS y JavaScript), especificación del diseño en Figma, redacción de este README y apoyo en la publicación del repositorio.
+- **Logo del Mercado Gastronómico Azteca:** imagen conceptual generada con una herramienta de IA para esta prueba. No es el logo oficial; se reemplazaría por el que entregue el área.
 
 ## Qué mejoraría con más tiempo
 
