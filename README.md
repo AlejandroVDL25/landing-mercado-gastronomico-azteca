@@ -83,7 +83,7 @@ Para revisar cualquier día sin esperar a que llegue, agrega el parámetro `dia`
 
 ## Uso de IA
 
-- **Claude (Anthropic):** revisión del copy para detectar errores e inconsistencias, generación del código (HTML, CSS y JavaScript), especificación del diseño en Figma, redacción de este README y apoyo en la publicación del repositorio.
+- **Claude (Anthropic):** revisión del copy para detectar errores e inconsistencias (HTML, CSS y JavaScript), especificación del diseño en Figma y redacción de este README.
 - **Logo del Mercado Gastronómico Azteca:** imagen conceptual generada con una herramienta de IA para esta prueba. No es el logo oficial; se reemplazaría por el que entregue el área.
 
 ## Qué mejoraría con más tiempo
